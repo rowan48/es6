@@ -1,0 +1,222 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+
+            /*
+                Introduced in Internet Explorer 10.
+                See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+            */
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script>
+        class Shape{
+            x;
+            y;
+            divRect;
+            selected=false;
+            offsetX=0;
+            offsetY=0;
+            constructor(x,y){
+                this.x=x;
+                this.y=y;
+                
+                this.divRect = document.createElement("div");
+                this.divRect.setAttribute("draggable","false");
+                this.divRect.style.position = "absolute";
+                this.divRect.style.backgroundColor = "red";
+                this.divRect.onmousedown = (e)=>{
+                    this.offsetX=e.offsetX;
+                    this.offsetY=e.offsetY;
+                    this.selected=true;
+                    console.log("selected "+this.constructor.name)
+                }
+                this.divRect.onmouseup = (e)=>{
+                    this.selected=false;
+                    console.log("not selected "+this.constructor.name)
+                }
+            }
+            getArea(){
+                return 0;
+            }
+            getCircumference(){
+                return 0;
+            }
+            log(){
+                console.log(`Area : ${this.getArea()} Circumference : ${this.getCircumference()} Type : ${this.constructor.name}`)
+            }
+
+            draw(drawArea){
+                drawArea.appendChild(this.divRect);
+            }
+        }
+
+
+        class Rectangle extends Shape{
+            width;
+            height;
+            constructor(x,y,width,height){
+                super(x,y);
+                this.width=width;
+                this.height=height;
+
+
+                this.rerender();
+            }
+            getArea(){
+                return this.width*this.height;
+            }
+            getCircumference(){
+                return 2 * (this.width+this.height);
+            }
+
+            rerender(){
+                this.divRect.style.width = this.width+"px";
+                this.divRect.style.height = this.height+"px";
+                this.divRect.style.left = this.x+"px";
+                this.divRect.style.top = this.y+"px";
+            }
+        }
+
+        class Square extends Rectangle {
+            length;
+            constructor(x,y,length){
+                super(x,y,length,length);
+                this.length=length;
+                this.divRect.style.backgroundColor="blue";
+            }
+        }
+
+        class Oval extends Shape{
+            A;
+            B;
+            constructor(x,y,A,B){
+                super(x,y);
+                this.A=A;
+                this.B=B;
+
+                this.rerender();
+                this.divRect.style.backgroundColor = "yellow";
+                this.divRect.style.borderRadius = "50%";
+            }
+
+            rerender(){
+                this.divRect.style.width = (this.A*2)+"px";
+                this.divRect.style.height = (this.B*2)+"px";
+                this.divRect.style.left = this.x+"px";
+                this.divRect.style.top = this.y+"px";
+            }
+
+            getArea(){
+                return Math.PI*this.A*this.B;
+            }
+            getCircumference(){
+                return Math.PI * (this.A+this.B);
+            }
+        }
+
+        class Circle extends Oval {
+            R;
+            constructor(x,y,R){
+                super(x,y,R,R);
+                this.R=R;
+                this.divRect.style.backgroundColor="gray";
+                
+            }
+
+        }
+
+
+        class DrawArea {
+            shapes=[];
+            htmlEle;
+            constructor(){
+                this.htmlEle = document.createElement("div");
+                this.htmlEle.style.width = "1000px";
+                this.htmlEle.style.height = "1000px";
+                this.htmlEle.style.backgroundColor = "green";
+                this.htmlEle.style.display="block";
+                this.htmlEle.style.position="absolute";
+                this.htmlEle.style.left="0px";
+                this.htmlEle.style.top="0px";
+                this.htmlEle.onmousemove =(e)=>this.mouseMove(e);
+                this.htmlEle.onmouseup = (e)=>{
+                    this.shapes.forEach((item)=>item.selected=false);
+                    console.log("not selected "+this.constructor.name)
+                }
+            }
+
+            mouseMove(e){
+                
+                let selectedShape = this.shapes.find(x=>x.selected);
+                if(selectedShape){
+                    selectedShape.x = e.x - selectedShape.offsetX;
+                    selectedShape.y = e.y - selectedShape.offsetY;
+                    selectedShape.rerender();
+                }
+            }
+
+            addShapes(...shapes){
+                this.shapes.push(...shapes);
+            }
+
+            log(){
+                this.shapes.forEach((item)=>item.log());
+            }
+
+            draw(){
+                document.body.appendChild(this.htmlEle);
+                this.shapes.forEach((item)=>item.draw(this.htmlEle));
+            }
+
+            addShape(){
+                var shapeType = prompt("Which shape you want to add (circle,oval,rectangle,square)").toLowerCase()
+                let shape ;
+                switch(shapeType){
+                    case "circle":
+                        shape = new Circle(Number(prompt("enter x")),Number(prompt("enter y")),Number(prompt("enter r")))
+                    break;
+                    case "oval":
+                        shape = new Oval(Number(prompt("enter x")),Number(prompt("enter y")),Number(prompt("enter A")),Number(prompt("enter B")))
+                    break;
+                    case "rectangle":
+                        shape = new Rectangle(Number(prompt("enter x")),Number(prompt("enter y")),Number(prompt("enter width")),Number(prompt("enter height")))
+                    break;
+                    case "square":
+                        shape = new Square(Number(prompt("enter x")),Number(prompt("enter y")),Number(prompt("enter length")))
+                    break;
+                }
+                shape.draw(this.htmlEle);
+                this.shapes.push(shape);
+            }
+        }
+
+
+
+        let c1 = new Circle(0,0,30);
+        let o1 = new Oval(30,30,30,40);
+        let s1 = new Square(70,70,30);
+        let r1 = new Rectangle(100,100,300,400);
+        
+        let drawArea = new DrawArea();
+        drawArea.addShapes(c1,o1,s1,r1);
+        drawArea.log();
+    </script>
+</head>
+<body>
+    
+    <script>
+        drawArea.draw();
+    </script>
+    <button onclick="drawArea.addShape();" style="    z-index: 1000;position: absolute;" >Add Shape</button>
+</body>
+</html>

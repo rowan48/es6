@@ -1,0 +1,350 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //var 
+
+        /*
+        x = 5;
+        var x;
+
+        if(true){
+            var z = 2;
+        }
+
+        alert(z);
+
+        function myFun(){
+            var y = 2;
+        }
+
+        alert(y);
+        */
+
+
+        /*
+        for(let i =0;i<10;i++){
+            let y = 5;
+
+
+
+
+        }
+
+        alert(i);
+        */
+        //let y;
+        //y = 2;
+
+        //let nnn = 1;
+
+        //console.log(window);
+
+        //let history = 10;
+       
+        //alert(history);
+
+        //const Employee = {name:"ahmed",salary:2000}
+
+        //Employee.salary=1000;
+        //Employee.age = 20;
+        //alert(Employee.salary);
+        //alert(Employee.age);
+        //Employee = {};
+
+
+
+
+        //loop statments 
+        // for of , for in
+        //let emps = ["ahmed","ali","mohamed"];
+
+        /*for(let i =0;i<emps.length;i++){
+            let emp = emps[i];
+            console.log(emp);
+        }
+
+
+        for(let emp of emps){
+            console.log(emp);
+        }*/
+
+
+        /*
+        let person={
+            Name:"Ahmed",
+            Height:170,
+            Age:30,
+            Salary:10000,
+            Address:"Alex"
+        }
+
+
+        for(let prop in person){
+            alert(prop + " = " + person[prop]);
+        }
+
+
+        let personData ="";
+        for(let prop in person){
+            personData +=(prop + " = " + person[prop]) +"\n";
+        }
+
+        alert(personData);
+        */
+
+        /*
+        let emps = ["ahmed","ali","mohamed"];
+
+        for(let i in emps){
+            alert(i);
+        }
+        */
+
+
+/*
+        var age = 30;
+        
+
+        var z = `دبي، الإمارات العربية المتحدة (CNN)-- أثارت تحية الرئيس المصري عبدالفتاح السيسي لوزيرة الطاقة الإسرائيلية كارين الهرار، في القاهرة، حالة من التفاعل عبر الشبكات الاجتماعية ولدى مسؤولي الحكومة في إسرائيل.
+
+مبادرة السيسي بتحية الوزيرة الإسرائيلية كانت لدى افتتاحه مؤتمر ومعرض مصر الدولي للبترول "إيجبس 2022"، الذي بدأ في العاصمة المصرية، الاثنين.
+
+
+خلال بث تليفزيوني، ظهر السيسي وهو يمشي داخل قاعة المؤتمر في اتجاه وزيرة الطاقة الإسرائيلية التي كانت تجلس على كرسي متحرك، قبل أن يدور بينهما حديث قصير.
+
+من جانبه، أشاد رئيس الوزراء الاسرائيلي نفتالي بينت، بتصرف الرئيس المصري، قائلا عبر تويتر: "الرئيس السيسي، لمست (قلوبنا) جميعًا".
+
+`
+
+
+
+    var x = `Ahmed's Age = ${age} 
+Salary = 3000`;
+alert(z);
+
+alert(x);
+*/
+
+        /*
+        let person={
+            Name:"Ahmed",
+            Height:170,
+            Age:30,
+            Salary:10000,
+            Address:"Alex"
+        }
+
+        let html = `<tr><td>${person.Name}</td><td>${person.Height}</td><td>${person.Age}</td><td>${person.Salary}</td><td>${person.Address}</td></tr>`
+        */
+
+
+
+        //function
+        /*
+        const PI = 3.14;
+        function CircleArea(r=1){
+
+            return r * r * PI;
+        } 
+
+        alert(CircleArea());
+        */
+
+        /*
+        function showWelcomeMessage(name="anony"){
+            
+            alert("Welcome "+name);
+        }
+
+        showWelcomeMessage();
+        */
+
+        /*
+        function sum (a,b){
+            return a+b;
+        }
+        */
+
+        /*
+        let sum = function(a,b){
+            return a+b;
+        }
+
+        */
+
+
+        /*
+        let sum = (a,b)=>{
+            return a+b;
+        }
+        */
+
+        /*
+        let sum = (a,b)=> a+b;
+
+        alert(sum(1,2));
+        */
+
+
+        /*
+        let showWelcomeMessage = name => alert("Welcome "+name);
+
+        showWelcomeMessage("Ahmed");
+        */
+
+
+       
+    </script>
+</head>
+<body>
+    <button id="mybtn" >Show Details</button>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Ahmed</td>
+                <td>30</td>
+                <td>3000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ali</td>
+                <td>30</td>
+                <td>3000</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Mohamed</td>
+                <td>30</td>
+                <td>3000</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        /*let tds = document.getElementsByTagName("td");
+        for(let td of tds){
+            td.onclick = function(e){
+                alert(td.innerHTML);
+            }
+        }
+        */
+
+        /*
+        function GridTable(){
+            this.name = "mytable";
+            this.click = (e)=>{
+                console.log(this.name);
+            }
+        }
+
+
+        let gridTable = new GridTable();
+
+        var tableEle = document.getElementsByTagName("table")[0];
+        */
+        /*
+        tableEle.onclick = function(e){
+            console.log(this);
+        }
+        */
+
+        //tableEle.onclick = gridTable.click.bind(gridTable);
+        //tableEle.onclick = gridTable.click;
+
+
+        
+        /*
+        function Person(nickname, country) {
+            this.nickname = nickname;
+            this.country = country;
+            this.getInfo = ()=> {
+
+                // Outer function context (Person object)
+                return ()=> {
+                    
+                    // Inner function context (Global object 'Window')
+                    //alert(this.constructor.name); // Window
+
+                    console.log(this);
+                    alert("Hi, I'm " + this.nickname + " from " + this.country);
+                };
+            }
+        }
+
+        
+
+
+        var p = new Person('Rick', 'Argentina');
+        var printInfo = p.getInfo();
+        printInfo(); // Hi, I'm undefined from undefined
+        */
+
+        var x =20;
+
+
+        class Person {
+            name="ahmed";
+            age=30;
+
+            constructor(name="nader",age=20){
+                this.name = name;
+                this.age = age;
+            }
+
+            showDetails(){
+                alert(`Name ${this.name} Age ${this.age}`);
+            }
+        }
+
+
+        class Employee extends Person{
+            //salary;
+
+            constructor(name,age,salary){
+                super(name,age)
+                this.salary = salary;
+                //this.showDetails = this.showDetails.bind(this);
+            }
+            showDetails(){
+                alert(`Name ${this.name} Age ${this.age} Salary ${this.salary}`)
+            }
+            /*showDetails = ()=>{
+                alert(`Name ${this.name} Age ${this.age} Salary ${this.salary}`)
+            }*/
+
+        }
+
+
+        let person1 = new Person();
+        //person1.name = "Ali"
+        //person1.address = "Alex";
+
+        //console.log(person1);
+        //person1.showDetails();
+
+
+        let emp = new Employee("Ali",50,3000);
+        //emp.salary = 3000;
+        emp.address = "Alex";
+        console.log(emp);
+        alert(emp.constructor.name);
+        //emp.showDetails();
+        mybtn.onclick = ()=> emp.showDetails();
+        
+    </script>
+    <script src="../classes.js"></script>
+    <script>
+        //alert(z);
+    </script>
+</body>
+</html>

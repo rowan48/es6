@@ -1,0 +1,216 @@
+<!DOCTYPE html>    
+<html>    
+<head> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <title>TODO-trial</title>    
+    <style>
+        .whole{
+            background-color: white;
+        }
+        .container{
+            width:300px;
+            margin: 0;
+            text-align: center;
+            width: 50%;
+            height: 100%;
+            padding-top: 80px;
+            background-color: blueviolet;
+            width:800px; margin:0 auto;
+
+        }
+        #todop{
+            /*width: 400px;*/
+            width: 50%;
+            padding-left: 0%;
+            
+        }
+        .colwidth{
+            width:300px;
+        }
+        .donebtn{
+            color: darkcyan;
+        }
+        .notdonebtn{
+            color: red;
+        }
+        #mydonebtn{
+            display: none;
+        }
+        .submitbtn{
+            background-color: blueviolet;
+            
+        }
+        .container td {
+            text-align: center;
+        }
+        .mytodo{
+            width: 40%;
+            height: 20px;
+            text-align: center;
+            width:800px; margin:0 auto;
+
+        }
+        .thetitle{
+            background-color: blueviolet;
+            width: 50%;
+            height: 30px;
+            text-align: center;
+            font-size: larger;
+            width:800px; 
+            margin:0 auto;
+
+        }
+        .tablestyle{
+            background-color: aliceblue;
+            border: 1px;
+            width:800px;
+             margin:0 auto;
+
+        }
+        .tablestyle td{
+            width: 25%;
+        }
+        #mytable{
+           width:800px; 
+           margin:0 auto;
+
+        }
+        #tasksdata{
+            width:800px; 
+            margin:0 auto;
+        }
+
+</style>  
+</head>    
+<body class ="whole"  onload="todotasksobj.fetchingtasksfromlocalstorage()">
+    <div class ="container">
+        <div class="thetitle">
+            Todo App Class
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class ="mytodo">
+            <input type="text" name="todo" id="todop" placeholder="enter ur task">    
+            <button name="submit" class ="submitbtn" type="submit" onclick="todotasksobj.savetasks()">Submit</button> 
+            <button name="submit" class ="donebtn" id ="mydonebtn" type="submit" onclick="">Done</button> 
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <table id="mytable">
+            <thead>
+              <tr>
+                <th scope="col" class ="colwidth">Task</th>
+                <th scope="col" class ="col2width">Done</th>
+                <th scope="col" class ="col2width">Edit</th>
+              </tr>
+            </thead>
+            <tbody id ="tasksdata">
+            </tbody>
+          </table>
+
+    </div>    
+
+<script>
+
+    class todotasks{
+        constructor(){
+            this.id =0;
+            this.tasks =[{
+            id :0,
+            task:"eat"
+    }];
+    // add on click on document
+    // get target ( e.target )
+    // check if target type is button ( target.nodeName )
+    // get custom attribute from button
+    // continue logic
+    document.onclick = (e) => {
+        let index;
+        // if (e.target.nodeName === 'BUTTON' && e.target.className === "submitbtn"){
+        //     index = e.target.getAttribute("data-element-index")
+        //     index = parseInt(index, 10);
+        //     this.savetasks()
+        // }
+        if (e.target.nodeName ==='BUTTON' && e.target.className==="doneBtn"){
+            index = e.target.getAttribute("data-element-index")
+            index = parseInt(index, 10);
+            this.deletetask(index);
+        }
+        if (e.target.nodeName ==='BUTTON' && e.target.className==="editBtn"){
+            index = e.target.getAttribute("data-element-index")
+            index = parseInt(index, 10);
+            this.edittask(index);
+        }
+
+        //console.log(e.target);
+        //console.log(e.target.nodeName);
+        // console.log(e.target.id);
+        //console.log(e.target.className);
+        //console.log(e.target.getAttribute("data-element-index"));
+        //console.log(e.target.getAttribute("scope"));
+        // logic
+        //this.deleteTask(index);
+    }
+    //this.rendertasks();
+    } //end of constructor
+        rendertasks(){
+        var taskhtmlarr = this.tasks.map((element,ind)=>{
+            return "<tr class =\"tablestyle\"><td>"+element.task+"</td><td><button class=\"doneBtn\" data-element-index=\"" + ind +  "\" >done</button></td><td><button  class=\"editBtn\" data-element-index=\"" + ind +  "\">edit</button></td></tr>";
+
+        })
+        var taskhtml = taskhtmlarr.join("\n");
+        var tasksdata = document.getElementById("tasksdata");
+        tasksdata.innerHTML=taskhtml;
+    }//end of render tasks
+
+    savetasks(){
+        var taskname = document.getElementById("todop").value;
+        var task={
+            id:this.id+=1,
+            task:taskname
+        };
+        this.tasks.push(task);
+        localStorage.setItem("task", JSON.stringify(this.tasks));//adding tasks into localstorage
+        document.getElementById("todop").value = "";
+        this.rendertasks();
+
+    }//end of save tasks
+
+
+    deletetask(index){
+        this.tasks.splice(index,1);
+        localStorage.setItem("task", JSON.stringify(this.tasks));//adding tasks into localstorage after deletions
+        this.rendertasks();
+    }//end of deletetask function
+
+    edittask(e){
+        document.getElementById("todop").value=this.tasks[e].task;
+        //console.log(tasks[e].task);
+        console.log(e);
+        this.tasks.splice(e,1);
+        localStorage.setItem("task", JSON.stringify(this.tasks));//adding tasks into localstorage after deletions
+        this.rendertasks();
+         
+    }//end of edittask function
+
+
+    fetchingtasksfromlocalstorage(){
+        this.tasks = JSON.parse(localStorage.getItem('task')|| "[]");
+        this.rendertasks();
+    }//end of  fetchingtasksfromlocalstorage
+
+    }//end of class todotasks
+let todotasksobj=new todotasks();
+
+  
+
+
+
+
+    
+</script>   
+</body>    
+</html> 

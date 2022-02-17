@@ -1,0 +1,145 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <script>
+        class shape {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+
+            }
+             log() {
+                return "area: "+this.area()+", cimf: "+this.circumference()+", type: "+this.constructor.name;
+
+            }
+        }//end of shape class
+
+        class rectangle extends shape {
+            constructor(x,y,width, height) {
+                super(x,y);
+                this.width = width;
+                this.height = height;
+
+            }
+            circumference() {
+                let cf =this.width + this.height;
+                return cf;
+            }
+            area() {
+                return this.width * this.height;
+            }
+           /* log() {
+                return "area: "+this.area()+", cimf: "+this.circumference()+", type: "+this.constructor.name;
+
+            }*/
+            showDetails(){
+                alert(`wid ${this.width} h ${this.height}`)
+            }
+        }//end of rect class
+        class square extends rectangle {
+            constructor(width,height,l) {
+                super(width,height);
+                this.l = l;
+            }
+            circumference() {
+                return (this.l+this.l)*3.14;
+
+            }
+            area() {
+                return this.l*this.l*3.14;
+
+            }
+            /*log() {
+                return "area: "+this.area()+", cimf: "+this.circumference()+", type: "+this.constructor.name;
+
+            }*/
+
+        }//end of square class
+        class oval extends shape {
+            constructor(x,y,A, B) {
+                super(x,y);
+                this.A = A;
+                this.B = B;
+
+            }
+            circumference() {
+                return (this.A+this.B)*3.14;
+
+            }
+            area() {
+                return this.A*this.B*3.14;
+               
+
+            }
+          /*  log() {
+
+                return "area: "+this.area()+", cimf: "+this.circumference()+", type: "+this.constructor.name;
+            }*/
+        }//end of oval class
+        class circle extends oval {
+            constructor(A,B,r) {
+                super(A,B);
+                this.r = r;
+            }
+            circumference() {
+                return 4 * 3.14 * this.r;;
+            }
+            area() {
+                return 3.14 * this.r * this.r;
+
+            }
+           /* log() {
+                super.log();
+                return "area: "+this.area()+", cimf: "+this.circumference()+", type: "+this.constructor.name;
+
+            }*/
+        }//end of circle class
+
+        class drawshape {
+           constructor(){
+            //this.att = [new rectangle(0,0,10, 5).log(), new square(0,0,5).log(), new oval(0,0,10, 5).log(), new circle(5,10,5).log()];    
+            this.att = [];
+
+
+
+            }
+            add(myshape){
+                this.att.push(myshape);
+
+            
+            }
+            print(){
+                for(let i=0 ;i<this.att.length;i++){
+                    console.log(this.att[i]);
+                }
+            }
+            
+
+
+
+        }
+        let myshape = new drawshape();
+        //myshape.print();
+        myshape.add(new rectangle(0,0,10, 5).log());
+        myshape.add(new square(0,0,5).log());
+        myshape.add(new oval(0,0,10, 5).log());
+        myshape.add(new circle(5,10,5).log());
+        myshape.print();
+
+
+
+
+
+
+    </script>
+
+    </body>
+
+</html>

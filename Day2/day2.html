@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //let const
+        //for of , for in
+        //default value , arrow function
+        //classes
+        //template letirals
+
+        /*
+        function sum(...nums){
+            let result = 0;
+
+            nums.forEach(item => result += item)
+            //for(let num of nums){
+            //    result += num;
+            //}
+
+            return result;
+        }
+
+        function massOper(iniValue,fun,...nums){
+            let result = iniValue;
+
+            nums.forEach(item=>result = fun(result,item))
+
+
+            return result;
+        }
+
+        //alert(sum(4,5,2,1,3));
+        alert(massOper(1,(result,item)=>result/item,1,2,3,4,5))
+
+
+
+
+        function greatings(msg,...names){
+            for(let name of names){
+                alert(msg + name);
+            }
+        }
+
+
+        greatings("Hi ","Ahmed","Mohamed","Ali");
+        */
+
+        /*
+        function greatings(msg,...names){
+            for(let name of names){
+                alert(msg + name);
+            }
+        }
+
+        let names = ["Ahmed","Mohamed","Ali"];
+        */
+        //greatings("Hi ",...names);
+        //let args = ["Hi "].concat(names);
+        //greatings.apply(null,args);
+        //let nums = [1,2,3,4,5];
+        
+        //alert(Math.max(...nums));
+
+
+        /*
+        let nums1 = [34123,431,4321,4321,4321];
+        let nums2 = [4123,432,423,1,4312,4,32];
+        let nums3 = [4123,432,423,1,4312,4,32];
+        let nums = [312,...nums1,23143,4312,...nums2,...nums3]
+
+        alert(Math.max(...nums));
+        */
+        /*
+        let person = {
+            name:"ahmed",
+            age:30,
+            address:"Alex"
+        }
+
+
+        let emp = {
+            ...person,
+            department:"HR",
+            salary:3000
+        }
+
+        console.log(emp);
+        */
+
+        /*
+        let person = {
+            name:"ahmed",
+            age:30,
+            address:"Alex"
+        }
+
+
+        let {name2:name,age} = person;
+        alert(`My name is ${name} , I'm ${age} years old`);
+        */
+
+
+        /*
+        let person = {
+            name:"ahmed",
+            age:30,
+            address:"Alex"
+        }
+
+
+        let emp = {
+            ...person,
+            department:"HR",
+            salary:3000
+        }
+
+
+        let {salary,...profile} = emp;
+        console.log(profile);
+        */
+
+
+        //let data = ["Ahmed",30,"Alex"];
+
+        //let name = data[0];
+        //let age = data[1];
+        //let address = data[2];
+
+        //let [name,age,address] = data;
+        //console.log(name,age,address);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
